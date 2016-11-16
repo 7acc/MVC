@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{010DDE2E-B1B9-433D-B64A-654C69497749}</ProjectGuid>
+    <ProjectGuid>{E2CC3E80-F3BC-407B-BF44-4E9657473D89}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>MVC_Labb_1</RootNamespace>
-    <AssemblyName>MVC_Labb_1</AssemblyName>
+    <RootNamespace>Labb_1</RootNamespace>
+    <AssemblyName>Labb_1</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -117,6 +117,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="GalleryPhotos\Bil.png" />
+    <Content Include="GalleryPhotos\hybrid-animals-bea_3095351k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-bir_3095339k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-bir_3095352k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-cat_3095335k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-cow_3095341k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-gir_3095344k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-lam_3095329k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-lio_3095336k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-mac_3095333k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-mou_3095331k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-owl_3095337k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-pig_3095342k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-sha_3095334k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-spi_3095330k.jpg" />
+    <Content Include="GalleryPhotos\hybrid-animals-wha_3095332k.jpg" />
     <Content Include="Global.asax" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -158,9 +174,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>37560</DevelopmentServerPort>
+          <DevelopmentServerPort>43239</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:37560/</IISUrl>
+          <IISUrl>http://localhost:43239/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

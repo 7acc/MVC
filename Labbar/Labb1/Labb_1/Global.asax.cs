@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace MVC_Labb_1
+namespace Labb_1
 {
     public class MvcApplication : System.Web.HttpApplication
     {
