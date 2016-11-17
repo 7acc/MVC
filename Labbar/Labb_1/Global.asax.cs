@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
+using Labb_1.Models;
 
 namespace Labb_1
 {
@@ -11,6 +12,7 @@ namespace Labb_1
     {
         protected void Application_Start()
         {
+            DataAccess.UserAccounts = new List<UserAccount>();
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }

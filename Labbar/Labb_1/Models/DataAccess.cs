@@ -11,16 +11,13 @@ namespace Labb_1.Models
 
         public void SaveUser(UserAccount user)
         {
-            if (UserAccounts == null)
-            {
-                UserAccounts = new List<UserAccount>();
-            }
+         
             UserAccounts.Add(user);
         }
 
         public UserAccount LoginUser(UserAccount user)
         {
-            UserAccount usr = UserAccounts.Single(x => x.Email== user.Email && x.Password == user.Password);
+            UserAccount usr = UserAccounts.FirstOrDefault(x => x.Email== user.Email && x.Password == user.Password);
             return usr;
         }
     }
