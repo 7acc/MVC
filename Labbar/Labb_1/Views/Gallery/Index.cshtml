@@ -8,7 +8,10 @@
     @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
     @foreach (var url in Model)
     {
-        <img src="@Url.Content(url)" alt="Image From Folder"/>
+        <a href='@Url.Action("ShowImage", "Gallery", new { ImageUrl = url })';>
+            <img src="@Url.Content(url)" alt="Image From Folder" />
+        </a>
+       
 
     }
 

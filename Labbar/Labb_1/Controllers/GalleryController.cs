@@ -34,6 +34,13 @@ namespace Labb_1.Controllers
             image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));
             return View("Index");
         }
+        public ActionResult ShowImage(string ImageUrl)
+     {
+            //fick nått konstigt exeption när jag försökte skicka in "ImageUrl" i viewn för att sedan komma åt de via model.
+            //så de fick bli viewbag sålänge, sålänge funktionen finns tänker jag^^
+            ViewBag.Image = ImageUrl;
+            return View();
+        }
 
 
     }
