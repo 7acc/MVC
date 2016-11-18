@@ -41,6 +41,21 @@ namespace Labb_1.Controllers
             ViewBag.Image = ImageUrl;
             return View();
         }
+        public ActionResult Delete(string ImageUrl)
+        {
+            string AbsolutePath = HttpContext.Server.MapPath(ImageUrl);
+            if (System.IO.File.Exists(AbsolutePath))
+            {
+                System.IO.File.Delete(AbsolutePath);
+                return RedirectToAction("Index");
+                   
+            }
+            else
+            {
+                return RedirectToAction("ShowImage", new { ImageUrl = ImageUrl });
+            }
+
+        }
 
 
     }
