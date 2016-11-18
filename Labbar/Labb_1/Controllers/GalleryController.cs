@@ -52,6 +52,7 @@ namespace Labb_1.Controllers
             }
             else
             {
+              
                 return RedirectToAction("ShowImage", new { ImageUrl = ImageUrl });
             }
 

@@ -63,6 +63,11 @@ namespace Labb_1.Controllers
             }
           
         }
+        public ActionResult LogOut(string url)
+        {
+            Session.Clear();
+            return Redirect(url);
+        }
 
         public ActionResult LoggedIn()
         {
