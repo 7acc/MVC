@@ -37,17 +37,20 @@
         </div>
     </div>
 
-    <div class="container-full">
-        <div class="container">
-            <div class="col-md-10">@RenderBody()</div>
+<div class="container-full">
+    <div class="row">
+        <div class="container-full">
+            <div class="col-md-2"></div>
+            <div class="col-md-8">@RenderBody()</div>
             <div class="col-md-2">@RenderSection("featured", required: false)</div>
         </div>
-
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
     </div>
+
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+</div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
