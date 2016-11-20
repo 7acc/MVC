@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.EnterpriseServices;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using System.Web.Mvc;
 using Labb_1.Models;
@@ -10,7 +12,9 @@ namespace Labb_1.Controllers
 {
     public class GalleryController : Controller
     {
+
         private static IList<string> ImageList;
+        private static IList<Photo> Photos = new List<Photo>();
         // GET: Gallery
         public ActionResult Index()
         {
@@ -28,14 +32,19 @@ namespace Labb_1.Controllers
         [HttpPost]
         public ActionResult UpLoad(Photo photo, HttpPostedFileBase image)
         {
-            if (!ModelState.IsValid){return View(photo);}
-            if (image == null){return View(photo);}
+            if (!ModelState.IsValid) { return View(photo); }
+            if (image == null) { return View(photo); }
+
+            photo.Url = "~/GalleryPhotos" + image.FileName;
+            photo.UploadedDate = DateTime.Now;
+            
+            Photos.Add(photo);
 
             image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));
-            return View("Index");
+            return RedirectToAction("Index");
         }
         public ActionResult ShowImage(string ImageUrl)
-     {
+        {
             //fick nått konstigt exeption när jag försökte skicka in "ImageUrl" i viewn för att sedan komma åt de via model.
             //så de fick bli viewbag sålänge, sålänge funktionen finns tänker jag^^
             ViewBag.Image = ImageUrl;
@@ -48,15 +57,32 @@ namespace Labb_1.Controllers
             {
                 System.IO.File.Delete(AbsolutePath);
                 return RedirectToAction("Index");
-                   
+
             }
             else
             {
-              
+
                 return RedirectToAction("ShowImage", new { ImageUrl = ImageUrl });
             }
 
         }
+
+        public ActionResult RecentUploads()
+        {
+            if (Photos != null)
+            {
+                var list = Photos.OrderByDescending(x => x.UploadedDate)
+                    .Take(3)
+                    .ToList();
+                ViewBag.list = list;
+            }
+         
+                return PartialView();
+
+        }
+
+
+
 
 
     }

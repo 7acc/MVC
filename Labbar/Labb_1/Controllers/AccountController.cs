@@ -58,7 +58,7 @@ namespace Labb_1.Controllers
             }
             else
             {
-                ModelState.AddModelError("", "UserName Or Password is Invalid");
+                ModelState.AddModelError("", "UserName/Password is Invalid");
                 return View();
             }
           

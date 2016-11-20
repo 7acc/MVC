@@ -7,5 +7,5 @@
 <img src="@Url.Content(ViewBag.Image)" alt="Image From Folder" style="max-width: 100%" />
 @if (Session["admin"] != null && (bool)Session["Admin"] == true )
 {
-    <a href='@Url.Action("Delete", "Gallery", new { ImageUrl = ViewBag.Image})' ;>Delete Image</a>
+    <a href='@Url.Action("Delete", "Gallery", new { ImageUrl = ViewBag.Image})'>Delete Image</a>
 }

@@ -21,7 +21,7 @@
                 @if (Session["UserID"] != null)
                 {
                     <h2>@Session["UserName"].ToString()</h2>
-                    @Html.ActionLink("Logout", "Logout", "Account", new {url = Request.Url.AbsoluteUri}, new { @class = "navbar-brand" })
+                    @Html.ActionLink("Logout", "Logout", "Account", new { url = Request.Url.AbsoluteUri }, new { @class = "navbar-brand" })
                 }
                 else
                 {
@@ -29,17 +29,20 @@
                 }
                 @Html.ActionLink("Home", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @Html.ActionLink("Gallery", "Index", "Gallery", new { area = "" }, new { @class = "navbar-brand" })
-              
+
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
+                <ul class="nav navbar-nav"></ul>
             </div>
         </div>
     </div>
 
-    <div class="container body-content">
-        @RenderBody()
+    <div class="container-full">
+        <div class="container">
+            <div class="col-md-10">@RenderBody()</div>
+            <div class="col-md-2">@RenderSection("featured", required: false)</div>
+        </div>
+
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>

@@ -1,20 +1,32 @@
 ﻿@model IList<string>
+
 @{
     ViewBag.Title = "Gallery";
+
+
 }
 
+
 <h2>My Gallery</h2>
-<div class="container">
-    @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
-    @foreach (var url in Model)
-    {
-        <a href='@Url.Action("ShowImage", "Gallery", new { ImageUrl = url })';>
-            <img src="@Url.Content(url)" alt="Image From Folder" />
-        </a>
-       
+<div class="container-full">
 
-    }
+        @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
+        @foreach (var url in Model)
+            {
+            <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = url})'>
+                <img src="@Url.Content(url)" alt="Image From Folder" style="max-width: 100%" />
+            </a>
+        }
+   
+  
+        @section featured
+{
+            @{
+                Html.RenderPartial("RecentUploads");
+            }
 
+            this is my section
+        }
+   
 </div>
 
-     

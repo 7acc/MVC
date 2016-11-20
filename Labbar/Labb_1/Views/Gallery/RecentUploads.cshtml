@@ -1,0 +1,11 @@
+﻿
+
+@if (ViewBag.list != null)
+{
+foreach (var photo in ViewBag.list)
+ {
+     <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
+         <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 200px"/>
+     </a>
+ }
+}
