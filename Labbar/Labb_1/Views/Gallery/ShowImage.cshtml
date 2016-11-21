@@ -1,11 +1,11 @@
-﻿@model string
+﻿@model Labb_1.Models.Photo
 @{
-    ViewBag.Title = "ShowImage";
+   
 }
 
 <h2>ShowImage</h2>
-<img src="@Url.Content(ViewBag.Image)" alt="Image From Folder" style="max-width: 100%" />
+<img src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%" />
 @if (Session["admin"] != null && (bool)Session["Admin"] == true )
 {
-    <a href='@Url.Action("Delete", "Gallery", new { ImageUrl = ViewBag.Image})'>Delete Image</a>
+    <a href='@Url.Action("Delete", "Gallery", new { image = Model})'>Delete Image</a>
 }

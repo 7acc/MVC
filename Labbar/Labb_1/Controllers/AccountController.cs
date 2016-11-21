@@ -9,6 +9,7 @@ namespace Labb_1.Controllers
 {
     public class AccountController : Controller
     {
+        private static DataAccess Db = new DataAccess();
         // GET: Account
         public ActionResult Index()
         {
@@ -27,8 +28,8 @@ namespace Labb_1.Controllers
             {
                 return View(account);
             }
-            var Db = new DataAccess();
-            account.UserID = new Guid();
+         
+            account.UserID = Guid.NewGuid();
             Db.SaveUser(account);
 
 
@@ -43,11 +44,10 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-        [HttpPost]
+        [HttpPost]    
         public ActionResult Login(UserAccount user)
         {
-            //get user logic
-            var Db = new DataAccess();
+            //get user logic       
             var usr = Db.LoginUser(user);
             if (usr != null)
             {

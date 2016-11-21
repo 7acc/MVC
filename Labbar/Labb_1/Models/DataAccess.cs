@@ -7,18 +7,41 @@ namespace Labb_1.Models
 {
     public class DataAccess
     {
-        public static List<UserAccount> UserAccounts { get; set; }
 
         public void SaveUser(UserAccount user)
         {
-         
-            UserAccounts.Add(user);
+            using (var ctx = new DataContext())
+            {
+                ctx.UsersAccounts.Add(user);
+                ctx.SaveChanges();
+            }         
         }
 
         public UserAccount LoginUser(UserAccount user)
         {
-            UserAccount usr = UserAccounts.FirstOrDefault(x => x.Email== user.Email && x.Password == user.Password);
-            return usr;
+            using (var ctx = new DataContext())
+            {
+                var userToLogIn = ctx.UsersAccounts.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+                return userToLogIn;
+            }                    
         }
+
+        public List<Photo> GetGalleryPhotos()
+        {
+            using (var ctx = new DataContext())
+            {
+                var photolist = ctx.Photos.ToList();
+                return photolist;
+            }
+        }
+
+        public void SavePhoto(Photo newPhoto)
+        {
+            using (var ctx = new DataContext())
+            {
+                ctx.Photos.Add(newPhoto);
+                ctx.SaveChanges();
+            }
+        } 
     }
 }

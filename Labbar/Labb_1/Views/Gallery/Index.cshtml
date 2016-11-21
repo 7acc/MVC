@@ -1,4 +1,4 @@
-﻿@model IList<string>
+﻿@model IList<Labb_1.Models.Photo>
 
 @{
     ViewBag.Title = "Gallery";
@@ -9,17 +9,19 @@
 
 <h2>My Gallery</h2>
 <div class="container-fluid">
-
+    <div style="margin-bottom: 40px">
         @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
+    </div>
     <br/>
-    <br/>
-        @foreach (var url in Model)
+    <br/>   
+    <div style="margin-top: 40px;">
+        @foreach (var photo in Model)
             {
-            <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = url})'>
-                <img src="@Url.Content(url)" alt="Image From Folder" style="max-width: 100%; max-height:300px" />
+            <a href='@Url.Action("ShowImage", "Gallery",  photo, null)'>
+                <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 100%; max-height:300px" />
             </a>
         }
-   
+    </div>
   
         @section featured
 {

@@ -12,15 +12,12 @@ namespace Labb_1.Controllers
 {
     public class GalleryController : Controller
     {
+        private static DataAccess Db = new DataAccess();
 
-        private static IList<string> ImageList;
-        private static IList<Photo> Photos = new List<Photo>();
         // GET: Gallery
         public ActionResult Index()
         {
-            ImageList =
-                Directory.EnumerateFiles(Server.MapPath("~/GalleryPhotos"))
-                    .Select(x => "~/GalleryPhotos/" + Path.GetFileName(x)).ToList();
+            var ImageList = Db.GetGalleryPhotos();               
             return View(ImageList);
         }
 
@@ -35,51 +32,51 @@ namespace Labb_1.Controllers
             if (!ModelState.IsValid) { return View(photo); }
             if (image == null) { return View(photo); }
 
-            photo.Url = "~/GalleryPhotos" + image.FileName;
+            photo.Url = "~/GalleryPhotos/" + image.FileName;
             photo.UploadedDate = DateTime.Now;
-            
-            Photos.Add(photo);
+            photo.PhotoID = Guid.NewGuid();
+            Db.SavePhoto(photo);
 
             image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));
             return RedirectToAction("Index");
         }
-        public ActionResult ShowImage(string ImageUrl)
+        public ActionResult ShowImage(Photo image)
         {
             //fick nått konstigt exeption när jag försökte skicka in "ImageUrl" i viewn för att sedan komma åt de via model.
             //så de fick bli viewbag sålänge, sålänge funktionen finns tänker jag^^
-            ViewBag.Image = ImageUrl;
-            return View();
+            
+            return View(model: image);
         }
-        public ActionResult Delete(string ImageUrl)
+        public ActionResult Delete(Photo image)
         {
-            string AbsolutePath = HttpContext.Server.MapPath(ImageUrl);
-            if (System.IO.File.Exists(AbsolutePath))
+            string absolutePath = HttpContext.Server.MapPath(image.Url);
+            if (System.IO.File.Exists(absolutePath))
             {
-                System.IO.File.Delete(AbsolutePath);
+                System.IO.File.Delete(absolutePath);
                 return RedirectToAction("Index");
 
             }
             else
             {
 
-                return RedirectToAction("ShowImage", new { ImageUrl = ImageUrl });
+                return RedirectToAction("ShowImage", new { photo = image });
             }
 
         }
 
-        public ActionResult RecentUploads()
-        {
-            if (Photos != null)
-            {
-                var list = Photos.OrderByDescending(x => x.UploadedDate)
-                    .Take(3)
-                    .ToList();
-                ViewBag.list = list;
-            }
-         
-                return PartialView();
+        //public PartialViewResult RecentUploads()
+        //{
+        //    if (Photos != null)
+        //    {
+        //        var list = Photos.OrderByDescending(x => x.UploadedDate)
+        //            .Take(3)
+        //            .ToList();
+        //        ViewBag.list = list;
+        //    }
 
-        }
+        //        return PartialView();
+
+        //}
 
 
 

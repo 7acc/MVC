@@ -12,7 +12,7 @@ namespace Labb_1
     {
         protected void Application_Start()
         {
-            DataAccess.UserAccounts = new List<UserAccount>();
+            
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
         }
