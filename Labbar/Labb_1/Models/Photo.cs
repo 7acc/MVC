@@ -8,16 +8,17 @@ namespace Labb_1.Models
 {
     public class Photo
     {
+        public Photo()
+        {
+            this.Comments = new HashSet<Comment>();
+        }
         public Guid PhotoID { get; set; }
-        public string Name { get; set; }    
+        public string Name { get; set; }
         public string Url { get; set; }
         public DateTime UploadedDate { get; set; }
- 
-        
-    }
+        public virtual ICollection<Comment> Comments { get; set; }
 
-    public class PhotoComment
-    {
-    
     }
 }
+
+   

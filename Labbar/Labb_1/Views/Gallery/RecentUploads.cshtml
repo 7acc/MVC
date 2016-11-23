@@ -1,11 +1,8 @@
-﻿
+﻿@model List<Labb_1.Models.Photo>
 
-@if (ViewBag.list != null)
-{
-foreach (var photo in ViewBag.list)
- {
-     <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
-         <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 200px"/>
-     </a>
- }
-}
+    @foreach (var photo in Model)
+    {
+        <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
+            <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 200px; max-height: 200px" />
+        </a>
+    }
