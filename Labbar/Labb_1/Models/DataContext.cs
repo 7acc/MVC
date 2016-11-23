@@ -10,5 +10,6 @@ namespace Labb_1.Models
     {
         public DbSet<Photo> Photos { get; set; }
         public DbSet<UserAccount> UsersAccounts { get; set; }
+        public DbSet<Comment> Comments { get; set; }
     }
 }

@@ -17,7 +17,7 @@
     <div style="margin-top: 40px;">
         @foreach (var photo in Model)
             {
-            <a href='@Url.Action("ShowImage", "Gallery",  photo, null)'>
+            <a href='@Url.Action("ShowImage", "Gallery",  new { id = photo.PhotoID }, null)'>
                 <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 100%; max-height:300px" />
             </a>
         }
@@ -26,10 +26,16 @@
         @section featured
 {
             @{
-                Html.RenderPartial("RecentUploads");
+                <div style="margin-top:20px">
+                    <h1>Recent uploads</h1>
+                    @{
+                        Html.RenderAction("RecentUploads");
+                    }
+                </div>
             }
 
-            this is my section
+
+           
         }
    
 </div>
