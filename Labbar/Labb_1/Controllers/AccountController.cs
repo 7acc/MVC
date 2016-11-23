@@ -9,7 +9,7 @@ namespace Labb_1.Controllers
 {
     public class AccountController : Controller
     {
-        private static DataAccess Db = new DataAccess();
+        private static readonly DataAccess Db = new DataAccess();
         // GET: Account
         public ActionResult Index()
         {
@@ -22,6 +22,7 @@ namespace Labb_1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Register(UserAccount account)
         {
             if (!ModelState.IsValid)
@@ -44,7 +45,8 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-        [HttpPost]    
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(UserAccount user)
         {
             //get user logic       

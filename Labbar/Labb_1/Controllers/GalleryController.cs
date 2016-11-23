@@ -12,7 +12,7 @@ namespace Labb_1.Controllers
 {
     public class GalleryController : Controller
     {
-        private static DataAccess Db = new DataAccess();
+        private static readonly DataAccess Db = new DataAccess();
 
         // GET: Gallery
         public ActionResult Index()
@@ -27,6 +27,7 @@ namespace Labb_1.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult UpLoad(Photo photo, HttpPostedFileBase image)
         {
             if (!ModelState.IsValid) { return View(photo); }
