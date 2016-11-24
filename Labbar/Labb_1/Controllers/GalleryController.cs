@@ -44,9 +44,7 @@ namespace Labb_1.Controllers
         public ActionResult ShowImage(Guid id)
         {
             var image = Db.GetImageById(id);
-            //fick nått konstigt exeption när jag försökte skicka in "ImageUrl" i viewn för att sedan komma åt de via model.
-            //så de fick bli viewbag sålänge, sålänge funktionen finns tänker jag^^
-            
+             
             return View(model: image);
         }
         public ActionResult Delete(Guid imageId)
@@ -57,25 +55,17 @@ namespace Labb_1.Controllers
             {
                 Db.RemoveImage(image);
                 System.IO.File.Delete(absolutePath);             
-                return RedirectToAction("Index");
-
-               
+                return RedirectToAction("Index");            
             }
             else
             {
-
                 return RedirectToAction("ShowImage", new { photo = image });
             }
-
         }
 
         public PartialViewResult RecentUploads()
-        {
-           
-            
+        {                     
                 var list = Db.GetRecentUploads(3);
-              
-            
 
             return PartialView(model: list);
 

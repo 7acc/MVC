@@ -127,6 +127,7 @@
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\jquery-filestyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -136,6 +137,9 @@
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery-filestyle.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -155,6 +159,23 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611231512343_InitialCreate.cs" />
+    <Compile Include="Migrations\201611231512343_InitialCreate.Designer.cs">
+      <DependentUpon>201611231512343_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611232116450_commentphotoid.cs" />
+    <Compile Include="Migrations\201611232116450_commentphotoid.Designer.cs">
+      <DependentUpon>201611232116450_commentphotoid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611232129512_comment.cs" />
+    <Compile Include="Migrations\201611232129512_comment.Designer.cs">
+      <DependentUpon>201611232129512_comment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611232209378_itsworking.cs" />
+    <Compile Include="Migrations\201611232209378_itsworking.Designer.cs">
+      <DependentUpon>201611232209378_itsworking.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -184,7 +205,8 @@
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\View.cshtml" />
     <Content Include="Views\Gallery\RecentUploads.cshtml" />
-    <Content Include="Views\Comments\CreateComment.cshtml" />
+    <Content Include="Views\Comments\PostComment.cshtml" />
+    <Content Include="Views\Comments\GetComments.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -195,6 +217,20 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="GalleryPhotos\" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201611231512343_InitialCreate.resx">
+      <DependentUpon>201611231512343_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611232116450_commentphotoid.resx">
+      <DependentUpon>201611232116450_commentphotoid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611232129512_comment.resx">
+      <DependentUpon>201611232129512_comment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611232209378_itsworking.resx">
+      <DependentUpon>201611232209378_itsworking.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

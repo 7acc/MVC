@@ -74,5 +74,17 @@ namespace Labb_1.Models
                 ctx.SaveChanges();
             }
         }
+
+        public void SaveComment(Guid photoId, Comment newComment)
+        {
+            using (var ctx = new DataContext())
+            {
+                var photo = ctx.Photos.Single(x => x.PhotoID == photoId);
+                photo.Comments.Add(newComment);
+
+                ctx.Comments.Add(newComment);
+                ctx.SaveChanges();
+            }
+        }
     }
 }

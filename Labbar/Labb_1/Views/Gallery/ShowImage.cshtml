@@ -1,21 +1,24 @@
-﻿@model Labb_1.Models.Photo
+﻿@using Labb_1.Models
+@model Labb_1.Models.Photo
 @{
    
 }
 
 <h2>ShowImage</h2>
-<img src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%" />
+<img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%" />
 @if (Session["admin"] != null && (bool)Session["Admin"] == true )
 {
     <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
 }
 <div>
     <div>
-       @Html.Partial("../Comments/CreateComment", new Labb_1.Models.Comment());
+       
+        @{
+            Html.RenderAction("PostComment","Comments", new {photoId = Model.PhotoID});
+            
+        }
     </div>
-    @foreach (var item in Model.Comments)
-    {
-        <p>@item.commentedBy.Name</p>
-        <p>@item.comment</p>
+    @{
+        Html.RenderAction("GetComments","Comments",new {imageId = Model.PhotoID});
     }
 </div>
