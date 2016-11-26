@@ -125,6 +125,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\AlbumSyle.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-filestyle.css" />
@@ -145,6 +146,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\PostComment.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -152,10 +154,13 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\GalleryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\PhotoController.cs" />
+    <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -175,7 +180,24 @@
     <Compile Include="Migrations\201611232209378_itsworking.Designer.cs">
       <DependentUpon>201611232209378_itsworking.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201611251410306_albums.cs" />
+    <Compile Include="Migrations\201611251410306_albums.Designer.cs">
+      <DependentUpon>201611251410306_albums.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611251426100_ablum.cs" />
+    <Compile Include="Migrations\201611251426100_ablum.Designer.cs">
+      <DependentUpon>201611251426100_ablum.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611251432090_fixingstuff.cs" />
+    <Compile Include="Migrations\201611251432090_fixingstuff.Designer.cs">
+      <DependentUpon>201611251432090_fixingstuff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201611251628542_uploaderid.cs" />
+    <Compile Include="Migrations\201611251628542_uploaderid.Designer.cs">
+      <DependentUpon>201611251628542_uploaderid.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Comment.cs" />
     <Compile Include="Models\DataAccess.cs" />
     <Compile Include="Models\DataContext.cs" />
@@ -207,6 +229,10 @@
     <Content Include="Views\Gallery\RecentUploads.cshtml" />
     <Content Include="Views\Comments\PostComment.cshtml" />
     <Content Include="Views\Comments\GetComments.cshtml" />
+    <Content Include="Views\Profile\UserProfile.cshtml" />
+    <Content Include="Views\Album\CreateAlbum.cshtml" />
+    <Content Include="Views\Photo\GetUserPhotosSelector.cshtml" />
+    <Content Include="Views\Album\ViewAlbum.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -230,6 +256,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201611232209378_itsworking.resx">
       <DependentUpon>201611232209378_itsworking.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251410306_albums.resx">
+      <DependentUpon>201611251410306_albums.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251426100_ablum.resx">
+      <DependentUpon>201611251426100_ablum.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251432090_fixingstuff.resx">
+      <DependentUpon>201611251432090_fixingstuff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201611251628542_uploaderid.resx">
+      <DependentUpon>201611251628542_uploaderid.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,35 @@
+﻿@model Labb_1.Models.UserAccount
+
+@{
+    ViewBag.Title = "UserProfile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>UserProfile</h2>
+<div class="container-full" style="margin-top:200px">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-6">
+            <p>@Model.Name</p><br />
+            <p>@Model.Email</p><br />
+        </div>
+        <div class="col-md-4"></div>
+    </div>
+    <div class="row">
+        <div>
+            @Html.ActionLink("New Album", "CreateAlbum", "Album")
+        </div>
+        @foreach (var album in Model.Albums)
+        {
+            <div>
+                <a href="@Url.Action("ViewAlbum","Album", new {albumId = album.AlbumId})">
+                    <div class="centerBlock" style="width: 200px; width: 200px;">
+                        <h2>@album.Name</h2>
+                    </div>
+                </a>
+            </div>
+            
+        }
+    </div>
+
+</div>

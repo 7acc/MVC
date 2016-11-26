@@ -53,8 +53,8 @@ namespace Labb_1.Controllers
             var usr = Db.LoginUser(user);
             if (usr != null)
             {
-                Session["UserID"] = usr.UserID.ToString();
-                Session["UserName"] = usr.Name.ToString();
+                Session["UserID"] = usr.UserID;
+                Session["UserName"] = usr.Name;
                 Session["Admin"] = usr.Admin;
                 return RedirectToAction("LoggedIn");
             }

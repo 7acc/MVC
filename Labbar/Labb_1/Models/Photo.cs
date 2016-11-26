@@ -15,8 +15,10 @@ namespace Labb_1.Models
         public Guid PhotoID { get; set; }
         public string Name { get; set; }
         public string Url { get; set; }
+        public Guid uploader{ get; set; }
         public DateTime UploadedDate { get; set; }
         public virtual ICollection<Comment> Comments { get; set; }
+        public virtual ICollection<Album> albums { get; set; } 
 
     }
 }

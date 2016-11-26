@@ -1,0 +1,23 @@
+﻿@model Labb_1.Models.Album
+
+<div class="container-full" style="margin-top: 100px;">
+    <div class="centerBlock">@Model.Name</div>
+    <div class="row">
+        <div class="col-md-4"></div>
+        <div class="col-md-6" id="flexcontainer">
+            @foreach (var photo in Model.Photos)
+            {
+
+                <div class="Image-thumb">
+                    <a href='@Url.Action("ShowImage", "Gallery", new {id = photo.PhotoID}, null)'>
+                        <img src="@Url.Content(photo.Url)" alt="Image From Folder"/>
+                    </a>
+                </div>
+            }
+            <div class="col-md-2"></div>
+        </div>
+    </div>
+</div>
+@section css{
+    <link href="@Url.Content("~/Content/AlbumSyle.css")" rel ="stylesheet"/>
+}

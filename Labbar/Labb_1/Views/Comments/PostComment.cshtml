@@ -3,22 +3,26 @@
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">     
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-horizontal">
+        <hr/>
+        @Html.ValidationSummary(true, "", new {@class = "text-danger"})
         <div class="form-group">
-            @Html.LabelFor(model => model.comment, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.comment, htmlAttributes: new {@class = "control-label col-md-2", @id = "theLabel"})
             <div class="col-md-10">
-                @Html.TextAreaFor(model => model.comment, new { htmlAttributes = new { @class = "form-control", id = "CommentText" }})
-                @Html.ValidationMessageFor(model => model.comment, "", new { @class = "text-danger" })
+                @Html.TextAreaFor(model => model.comment, new {htmlAttributes = new {@class = "form-control", id = "CommentText"}})
+                @Html.ValidationMessageFor(model => model.comment, "", new {@class = "text-danger"})
             </div>
-        </div>        
+        </div>
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="PostCommentBtn" type="submit" value="Post Comment" class="btn btn-default" />
+                <input id="PostCommentBtn" type="submit" value="Post Comment" class="btn btn-default"/>
             </div>
         </div>
     </div>
+
+
+
+
 }
 

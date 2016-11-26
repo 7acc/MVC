@@ -1,0 +1,12 @@
+﻿@using Labb_1.Models
+@model List<Labb_1.Models.Photo>
+
+<div class="container">
+    @foreach (var photo in Model)
+    {
+        <div>
+            <label for="@photo.PhotoID"><img  src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 300px" /></label>
+            <input type="checkbox" name="photoIds" value="@photo.PhotoID" id="@photo.PhotoID"/>
+        </div>
+    }
+</div>

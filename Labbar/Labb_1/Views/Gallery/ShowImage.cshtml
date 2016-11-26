@@ -5,20 +5,23 @@
 }
 
 <h2>ShowImage</h2>
-<img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%" />
+<div id="PhotoDiv">
+    <img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%" />
+</div>
 @if (Session["admin"] != null && (bool)Session["Admin"] == true )
 {
     <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
 }
 <div>
     <div>
-       
+
         @{
-            Html.RenderAction("PostComment","Comments", new {photoId = Model.PhotoID});
-            
+            Html.RenderAction("PostComment", "Comments", new {photoId = Model.PhotoID});
+
         }
     </div>
     @{
-        Html.RenderAction("GetComments","Comments",new {imageId = Model.PhotoID});
+        Html.RenderAction("GetComments", "Comments", new {imageId = Model.PhotoID});
     }
 </div>
+<script src="~/Scripts/PostComment.js"></script>

@@ -36,6 +36,10 @@ namespace Labb_1.Controllers
             photo.Url = "~/GalleryPhotos/" + image.FileName;
             photo.UploadedDate = DateTime.Now;
             photo.PhotoID = Guid.NewGuid();
+            if (Session["UserID"] != null)
+            {
+                photo.uploader = (Guid)Session["UserID"];
+            }
             Db.SavePhoto(photo);
 
             image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));

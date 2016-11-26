@@ -21,7 +21,8 @@ namespace Labb_1.Models
         {
             using (var ctx = new DataContext())
             {
-                var userToLogIn = ctx.UsersAccounts.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
+                var userToLogIn =
+                    ctx.UsersAccounts.FirstOrDefault(x => x.Email == user.Email && x.Password == user.Password);
                 return userToLogIn;
             }
         }
@@ -54,13 +55,22 @@ namespace Labb_1.Models
             }
         }
 
+        public List<Photo> GetuserPhoto(Guid userId)
+        {
+            using (var ctx = new DataContext())
+            {
+                var list = ctx.Photos.Where(x => x.uploader == userId).ToList();
+                return list;
+            }
+        }
+
         internal object GetRecentUploads(int count)
         {
             using (var ctx = new DataContext())
             {
                 var list = ctx.Photos.OrderByDescending(x => x.UploadedDate)
-                          .Take(count)
-                          .ToList();
+                    .Take(count)
+                    .ToList();
                 return list;
             }
         }
@@ -84,6 +94,44 @@ namespace Labb_1.Models
 
                 ctx.Comments.Add(newComment);
                 ctx.SaveChanges();
+            }
+        }
+
+        public UserAccount GetProfile(Guid userId)
+        {
+            using (var ctx = new DataContext())
+            {
+                var user =
+                    ctx.UsersAccounts.Include("Albums").Include("Albums.Photos").FirstOrDefault(x => x.UserID == userId);
+                return user;
+            }
+        }
+
+        public void SavenewAlbum(Album newalbum, Guid[] photoIds, Guid userId)
+        {
+            using (var ctx = new DataContext())
+            {
+                var photoList = ctx.Photos.Where(x => photoIds.Contains(x.PhotoID)).ToList();
+                foreach (var photo in photoList)
+                {
+                    newalbum.Photos.Add(photo);
+                }
+                var user = ctx.UsersAccounts.Single(x => x.UserID == userId);
+                user.Albums.Add(newalbum);
+
+                ctx.Albums.Add(newalbum);
+
+
+                ctx.SaveChanges();
+            }
+        }
+
+        public Album GetAlbum(Guid albumId)
+        {
+            using (var ctx = new DataContext())
+            {
+               var album = ctx.Albums.Include("Photos").FirstOrDefault(x => x.AlbumId == albumId);
+                return album;
             }
         }
     }

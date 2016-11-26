@@ -27,6 +27,7 @@ namespace Labb_1.Models
         [Compare("Password", ErrorMessage = "Please Confirm Your Password")]
         [DataType(DataType.Password)]       
         public string ConfirmPassword { get; set; }
+        public virtual ICollection<Album> Albums { get; set; } 
 
         public bool Admin { get; set; }
     }
