@@ -39,5 +39,11 @@ namespace Labb_1.Controllers
             var album = Db.GetAlbum(albumId);
             return View(album);
         }
+
+        public ActionResult ViewAlbumSlider(Guid albumId)
+        {
+            var album = Db.GetAlbum(albumId);
+            return PartialView(album);
+        }
     }
 }

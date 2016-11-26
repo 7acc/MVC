@@ -129,16 +129,23 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\jquery-filestyle.css" />
+    <Content Include="Content\RecentUploads.css" />
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Scripts\bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\images\bx_loader.gif" />
+    <Content Include="Scripts\images\controls.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery-filestyle.js" />
+    <Content Include="Scripts\jquery.bxslider.css" />
+    <Content Include="Scripts\jquery.bxslider.js" />
+    <Content Include="Scripts\jquery.bxslider.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -233,6 +240,8 @@
     <Content Include="Views\Album\CreateAlbum.cshtml" />
     <Content Include="Views\Photo\GetUserPhotosSelector.cshtml" />
     <Content Include="Views\Album\ViewAlbum.cshtml" />
+    <Content Include="Views\Error\Error.cshtml" />
+    <Content Include="Views\Album\ViewAlbumSlider.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,8 +1,11 @@
 ﻿@model List<Labb_1.Models.Photo>
-
+<div class="flexcontainer-recent">
+    <h1>Recent uploads</h1>
     @foreach (var photo in Model)
     {
-        <a href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
-            <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 200px; max-height: 200px" />
+        <a class="Aimage" href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
+            <img class="fleximage" src="@Url.Content(photo.Url)" alt="Image From Folder"/>
         </a>
     }
+</div>
+<link href="~/Content/RecentUploads.css" rel="stylesheet" />

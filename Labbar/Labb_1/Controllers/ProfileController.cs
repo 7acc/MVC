@@ -17,8 +17,20 @@ namespace Labb_1.Controllers
 
         public ActionResult UserProfile(Guid userId)
         {
-            var user = db.GetProfile(userId);
-            return View(user);
+            if (Session["UserID"] != null && userId == (Guid)Session["UserID"])
+            {
+                
+                var user = db.GetProfile(userId);
+                return View(user);
+            }
+            if (Session["UserID"] != null && userId != (Guid) Session["UserID"])
+            {
+              return RedirectToAction("UserProfile", new { userId = (Guid)Session["UserID"]});
+            }
+            else
+            {
+                return RedirectToAction("Login", "Account");
+            }
         }
     }
 }

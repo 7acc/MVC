@@ -17,7 +17,7 @@ namespace Labb_1.Controllers
 
             return View();
         }
-       
+       [HttpGet]
         public ActionResult GetComments(Guid imageId)
         {
            

@@ -1,21 +1,25 @@
 ﻿
 .Image-thumb {
     max-width: 100%;
-    height: 350px;
+    height: auto;
     margin: 1px;
       overflow: visible;
 }
 
     .Image-thumb img {
-        height: 100%;
+        height: 200px;
         width: auto;
    
+    }
+    .Image-thumb img:hover {
+        opacity: 0.9;
     }
 
 #flexcontainer {
     display: flex;
     flex-wrap: wrap;
     flex-flow: row wrap;
+    margin-bottom: 100px;
  
 }
 

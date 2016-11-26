@@ -2,6 +2,9 @@
 
 <div class="container-full" style="margin-top: 100px;">
     <div class="centerBlock">@Model.Name</div>
+    @{
+        Html.RenderAction("ViewAlbumSlider","Album",@Model.AlbumId);
+    }
     <div class="row">
         <div class="col-md-4"></div>
         <div class="col-md-6" id="flexcontainer">

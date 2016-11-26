@@ -1,0 +1,29 @@
+﻿
+.flexcontainer-recent h1 {
+    font-family: monospace;
+    text-align: center;
+}
+.flexcontainer-recent {
+    float: right;
+    display: flex;
+    flex-flow: column wrap;
+    flex-direction: column;  
+    width: 60%;
+    margin-right: 40px;
+}
+.Aimage {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+  
+}
+.fleximage {
+ margin-bottom: 3px;
+ width: 100%;
+ height: 100%;
+ 
+}
+.fleximage:hover {
+    opacity: 0.9
+}

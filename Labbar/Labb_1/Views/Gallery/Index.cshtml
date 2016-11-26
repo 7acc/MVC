@@ -9,25 +9,29 @@
 
 <h2>My Gallery</h2>
 <div class="container-fluid">
-    <div style="margin-bottom: 40px">
+    <div style="margin-top: 40px">
         @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
+        <div>
+            <h1>GALLERY</h1></div>
     </div>
     <br/>
     <br/>   
-    <div style="margin-top: 40px;">
+    <div id="flexcontainer">
         @foreach (var photo in Model)
             {
-            <a href='@Url.Action("ShowImage", "Gallery",  new { id = photo.PhotoID }, null)'>
-                <img src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 100%; max-height:300px" />
-            </a>
+            <div class="Image-thumb">
+                <a href='@Url.Action("ShowImage", "Gallery", new {id = photo.PhotoID}, null)'>
+                    <img src="@Url.Content(photo.Url)" alt="Image From Folder" />
+                </a>
+            </div>
         }
     </div>
   
         @section featured
 {
             @{
-                <div style="margin-top:20px">
-                    <h1>Recent uploads</h1>
+                <div style="margin-top:50px">
+                  
                     @{
                         Html.RenderAction("RecentUploads");
                     }
@@ -39,4 +43,4 @@
         }
    
 </div>
-
+<link href="~/Content/AlbumSyle.css" rel="stylesheet" />
