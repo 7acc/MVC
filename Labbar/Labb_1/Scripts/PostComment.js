@@ -2,11 +2,11 @@
     $("#PostCommentBtn").click(function (e) {
         e.preventDefault();
 
-        var CommentTextBox = $("textarea#comment");
+        var commentTextBox = $("textarea#comment");
         var ID = $("#PhotoDiv").children("img").attr("id");
 
         var commentModel = {
-            comment: CommentTextBox.val()
+            comment: commentTextBox.val()
         };
 
         $.ajax({
@@ -28,7 +28,7 @@
                 }).success(function (result) {
                     $("div#CommentsDiv").html(result);
                     //alert($("#PhotoDiv").children("img").attr("id"));
-                    CommentTextBox.val("");
+                    commentTextBox.val("");
 
                 });
             }

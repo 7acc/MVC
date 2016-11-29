@@ -9,7 +9,7 @@
     <img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%; margin-top: 50px;" />
 </div>
 
-@if (Session["admin"] != null && (bool)Session["Admin"] == true )
+@if (Session["admin"] != null && (bool)Session["Admin"] )
 {
     <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
 }
