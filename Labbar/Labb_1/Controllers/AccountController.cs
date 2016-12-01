@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Labb_1.Models;
+using System.Security.Claims;
 
 namespace Labb_1.Controllers
 {
@@ -27,17 +28,14 @@ namespace Labb_1.Controllers
         {
             if (!ModelState.IsValid)
             {
+                ModelState.AddModelError("", "You Did Something Wrong");
                 return View(account);
             }
-         
+
             account.UserID = Guid.NewGuid();
             Db.SaveUser(account);
-
-
-            ModelState.Clear();
-            ViewBag.Message = account.Name + " Successfully registered";
-
-            return View();
+      
+            return View("Login");
 
         }
 
@@ -51,29 +49,50 @@ namespace Labb_1.Controllers
         {
             //get user logic       
             var usr = Db.LoginUser(user);
+
             if (usr != null)
             {
-                Session["UserID"] = usr.UserID;
-                Session["UserName"] = usr.Name;
-                Session["Admin"] = usr.Admin;
-                return RedirectToAction("LoggedIn");
+                var identity = new ClaimsIdentity(new[]
+                 {
+                    new Claim(ClaimTypes.Name, usr.Name),
+                    new Claim(ClaimTypes.Email, usr.Email),
+                    new Claim(ClaimTypes.Sid, usr.UserID.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, usr.UserID.ToString()),
+                    new Claim(ClaimTypes.Role, usr.Admin ? "Admin" : "User")
+
+                },
+                         "ApplicationCookie");
+
+                var ctx = Request.GetOwinContext();
+                var authManager = ctx.Authentication;
+
+
+
+                authManager.SignIn(identity);
+
+                return RedirectToAction("Index", "Home");
+
             }
             else
             {
                 ModelState.AddModelError("", "UserName/Password is Invalid");
                 return View();
             }
-          
+
         }
         public ActionResult LogOut(string url)
         {
-            Session.Clear();
-            return Redirect(url);
+            var ctx = Request.GetOwinContext();
+            var authManager = ctx.Authentication;
+
+            authManager.SignOut("ApplicationCookie");
+            return RedirectToAction("Login", "Account");
+           
         }
 
         public ActionResult LoggedIn()
         {
-            if (Session["UserID"] != null)
+            if (User.Identity.IsAuthenticated)
             {
                 return View();
             }
@@ -84,5 +103,4 @@ namespace Labb_1.Controllers
         }
     }
 }
-           
-            
+

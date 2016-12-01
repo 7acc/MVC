@@ -15,6 +15,10 @@ namespace Labb_1
             
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            //makes AntiForgeryToken compatible with Claims (or so i thought)
+            System.Web.Helpers.AntiForgeryConfig.UniqueClaimTypeIdentifier =
+            System.Security.Claims.ClaimTypes.NameIdentifier;
         }
     }
 }

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Labb_1.Models;
+using System.Security.Claims;
 
 namespace Labb_1.Controllers
 {
@@ -15,22 +16,22 @@ namespace Labb_1.Controllers
             return View();
         }
 
-        public ActionResult UserProfile(Guid userId)
+        public ActionResult UserProfile()
         {
-            if (Session["UserID"] != null && userId == (Guid)Session["UserID"])
+            if (User.Identity.IsAuthenticated)
             {
-                
-                var user = db.GetProfile(userId);
-                return View(user);
-            }
-            if (Session["UserID"] != null && userId != (Guid) Session["UserID"])
-            {
-              return RedirectToAction("UserProfile", new { userId = (Guid)Session["UserID"]});
-            }
-            else
-            {
-                return RedirectToAction("Login", "Account");
-            }
+                var identity = User.Identity as ClaimsIdentity;
+                var id = new Guid(identity.FindFirst(ClaimTypes.Sid).Value);
+
+                var user = db.GetProfile(id);
+
+                if(user != null)
+                {
+                    return View(user);
+                }                               
+            }      
+                            
+                return RedirectToAction("Login", "Account");            
         }
     }
 }
