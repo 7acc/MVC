@@ -4,12 +4,23 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Labb_1.Models;
+using Labb1_Data.Interfaces;
+using Labb1_Data;
+using Labb1_Data.Repositories;
+using Labb_1.Migrations;
+using Microsoft.AspNet.Identity;
 
 namespace Labb_1.Controllers
 {
     public class AlbumController : Controller
     {
-        private static readonly DataAccess Db = new DataAccess();
+     IAlbumRepository  albumRepository;
+
+        public AlbumController()
+        {
+            this.albumRepository = new AlbumRepo();
+        }
+
         // GET: Album
         public ActionResult Index()
         {
@@ -21,29 +32,81 @@ namespace Labb_1.Controllers
             return View();
         }
         [HttpPost]
+        [Authorize]
         public ActionResult CreateAlbum(Album newalbum, Guid[] photoIds)
         {
             if (!ModelState.IsValid) { return View(newalbum); }
-            if (photoIds.Count() < 1) { return View(newalbum); }
+            if (photoIds == null || photoIds.Count() < 1) { return View(newalbum); }
 
             newalbum.AlbumId = Guid.NewGuid();
             newalbum.DateCreated = DateTime.Now;
-            Db.SavenewAlbum(newalbum, photoIds, (Guid)Session["UserID"]);
+            AlbumDatamodel albumData = newalbum.Transform();
+            albumRepository.SavenewAlbum(albumData, photoIds, new Guid(User.Identity.GetUserId()));;
 
 
-            return View();
+            return RedirectToAction("ViewAlbum", new {albumId = newalbum.AlbumId});
         }
 
         public ActionResult ViewAlbum(Guid albumId)
         {
-            var album = Db.GetAlbum(albumId);
+
+            
+
+            var album = new Album(albumRepository.GetById(albumId));
+            album.Photos = albumRepository.GetAlbumPhotos(album.AlbumId).Select(x => new Photo(x)).ToList();
+            album.CanBeEdited = CanEdit(new Guid(User.Identity.GetUserId()), albumId);
+
+
             return View(album);
         }
-
-        public ActionResult ViewAlbumSlider(Guid albumId)
+    
+        [HttpPost]
+        [Authorize]        
+        public ActionResult DeletePhotosFromAlbum(Guid albumId, Guid[] photoIds)
         {
-            var album = Db.GetAlbum(albumId);
+            return RedirectToAction("ViewAlbum", albumId);
+        }
+
+        [Authorize]
+        [HttpGet]
+        public ActionResult AddPhotosToAlbum(Guid albumId)
+        {
+            var album = new Album(albumRepository.GetById(albumId));
             return PartialView(album);
+        }
+
+
+        [HttpPost]
+        [Authorize]       
+        public ActionResult AddPhotosToAlbum(Guid albumId, Guid[] photoIds)
+        {
+
+            albumRepository.SavePhotosToAlbum(albumId, photoIds);
+            return RedirectToAction("ViewAlbum", new {albumId = albumId});
+        }
+
+        public ActionResult ViewAlbumSlider(Album album)
+        {
+           //album.Photos = albumRepository.GetAlbumPhotos(album.AlbumId).ToList()
+            return PartialView(album);
+        }
+
+        public bool CanEdit(Guid UserId, Guid AlbumId)
+        {
+           var userRepo = new UserRepo();
+            var userAblums = userRepo.GetUserAlbums(UserId);
+
+            if (userAblums.Any(x => x.AlbumID == AlbumId))
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public ActionResult RemoveAlbum(Guid albumid)
+        {
+            albumRepository.Delete(albumid);
+            return RedirectToAction("UserProfile", "Profile");
         }
     }
 }

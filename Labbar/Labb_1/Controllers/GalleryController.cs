@@ -6,19 +6,29 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Web;
 using System.Web.Mvc;
+using Labb1_Data;
 using Labb_1.Models;
+using Labb1_Data.Repositories;
+using Labb1_Data.Interfaces;
+using Microsoft.AspNet.Identity;
 
 namespace Labb_1.Controllers
 {
     public class GalleryController : Controller
     {
-        private static readonly DataAccess Db = new DataAccess();
+        IPhotoRepository PhotoRepository;
+
+     
+        public GalleryController()
+        {
+            PhotoRepository = new PhotoRepo();
+        }
 
         // GET: Gallery
         public ActionResult Index()
         {
-            var ImageList = Db.GetGalleryPhotos();               
-            return View(ImageList);
+            var imageList = PhotoRepository.GetAll().Select(x => new Photo(x)).ToList();        
+            return View(imageList);
         }
 
         public ActionResult UpLoad()
@@ -36,28 +46,29 @@ namespace Labb_1.Controllers
             photo.Url = "~/GalleryPhotos/" + image.FileName;
             photo.UploadedDate = DateTime.Now;
             photo.PhotoID = Guid.NewGuid();
-            if (Session["UserID"] != null)
+            if (User.Identity.IsAuthenticated)
             {
-                photo.uploader = (Guid)Session["UserID"];
+                photo.uploader = new Guid(User.Identity.GetUserId());
             }
-            Db.SavePhoto(photo);
+            var photoData = photo.Transform();
+            PhotoRepository.Add(photoData);
 
             image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));
             return RedirectToAction("Index");
         }
         public ActionResult ShowImage(Guid id)
         {
-            var image = Db.GetImageById(id);
+            var image = new Photo(PhotoRepository.GetById(id));
              
             return View(model: image);
         }
         public ActionResult Delete(Guid imageId)
         {
-           var image = Db.GetImageById(imageId);
+            var image = new Photo(PhotoRepository.GetById(imageId));
             string absolutePath = HttpContext.Server.MapPath(image.Url);
             if (System.IO.File.Exists(absolutePath))
             {
-                Db.RemoveImage(image);
+               PhotoRepository.Delete(imageId);
                 System.IO.File.Delete(absolutePath);             
                 return RedirectToAction("Index");            
             }
@@ -68,9 +79,9 @@ namespace Labb_1.Controllers
         }
 
         public PartialViewResult RecentUploads()
-        {                     
-                var list = Db.GetRecentUploads(3);
-
+        {
+            var list = PhotoRepository.GetRecentUploads(3).Select(x => new Photo(x)).ToList();
+             
             return PartialView(model: list);
 
         }

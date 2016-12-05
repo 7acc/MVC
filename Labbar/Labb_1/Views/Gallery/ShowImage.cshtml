@@ -3,28 +3,30 @@
 @{
    
 }
-
-<h2>ShowImage</h2>
-<div id="PhotoDiv">
-    <img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%; margin-top: 50px;" />
-</div>
-
-@if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
-{
-    <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
-}
 <div>
-    <div id="PostDiv">
-
-        @{
-            Html.RenderAction("PostComment", "Comments", new {photoId = Model.PhotoID});
-
-        }
+    <h2>ShowImage</h2>
+    <div id="PhotoDiv">
+        <img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%; margin-top: 50px;" />
     </div>
-    <div id="CommentsDiv">
-        @{
-            Html.RenderAction("GetComments", "Comments", new { imageId = Model.PhotoID });
-        }
+
+    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    {
+        <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
+    }
+    <div>
+        <div id="PostDiv">
+
+            @{
+                Html.RenderAction("PostComment", "Comments", new { photoId = Model.PhotoID });
+
+            }
+        </div>
+        <div id="CommentsDiv">
+            @{
+                Html.RenderAction("GetComments", "Comments", new { imageId = Model.PhotoID });
+            }
+        </div>
     </div>
 </div>
 <script src="~/Scripts/PostComment.js"></script>
+<script src="~/Scripts/GetCommentsInterval.js"></script>

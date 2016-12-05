@@ -1,12 +1,19 @@
 ﻿@model Labb_1.Models.Album
-
-<div class="container-full" style="margin-top: 100px;">
+<div id="idDiv" data-model-id="@Model.AlbumId"></div>
+<div id="AlbumContent"class="container-full" style="margin-top: 100px; margin-bottom: 100px;">
     <div class="centerBlock">@Model.Name</div>
     @{
-        Html.RenderAction("ViewAlbumSlider","Album",@Model.AlbumId);
+        Html.RenderAction("ViewAlbumSlider", Model);
     }
     <div class="row">
-        <div class="col-md-4"></div>
+        <div class="col-md-4">
+            @if (Model.CanBeEdited)
+            {
+
+                <a href='@Url.Action("DeletePhotosFromAlbum", "Album", new {albumId = Model.AlbumId}, null)'>Delete Photos</a>
+                <a href='@Url.Action("AddPhotosToAlbum", "Album", new {albumId = Model.AlbumId})'id="addbtn">Add Photos</a>
+            }
+        </div>
         <div class="col-md-6" id="flexcontainer">
             @foreach (var photo in Model.Photos)
             {
@@ -20,7 +27,10 @@
             <div class="col-md-2"></div>
         </div>
     </div>
+    <a href="@Url.Action("RemoveAlbum",new {albumId = Model.AlbumId})">Delete Album!</a>
 </div>
+
 @section css{
     <link href="@Url.Content("~/Content/AlbumSyle.css")" rel ="stylesheet"/>
+<script src="~/Scripts/ViewAlbum.js"></script>
 }

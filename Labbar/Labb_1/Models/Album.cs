@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
+using Labb1_Data;
 
 namespace Labb_1.Models
 {
@@ -18,6 +19,29 @@ namespace Labb_1.Models
         [MaxLength(30), MinLength(3)]
         public string Name { get; set; }
         public DateTime DateCreated { get; set; }
-        public  ICollection<Photo> Photos{ get; set; }
+        public ICollection<Photo> Photos { get; set; }
+        public bool CanBeEdited { get; set; }
+
+        public Album(AlbumDatamodel model)
+        {           
+
+            AlbumId = model.AlbumID;
+            Name = model.Name;
+            DateCreated = model.DateCreated;
+            Photos = new List<Photo>();
+        }
+        public AlbumDatamodel Transform()
+        {
+            var albumDataModel = new AlbumDatamodel
+            {
+
+
+                AlbumID = this.AlbumId,
+                Name = this.Name,
+                DateCreated = this.DateCreated,
+                Photos = this.Photos.Select(x => x.Transform()).ToList()
+            };
+            return albumDataModel;
+        }
     }
 }

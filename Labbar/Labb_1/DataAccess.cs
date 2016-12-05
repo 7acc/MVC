@@ -27,14 +27,7 @@ namespace Labb_1.Models
             }
         }
 
-        public List<Photo> GetGalleryPhotos()
-        {
-            using (var ctx = new DataContext())
-            {
-                var photolist = ctx.Photos.Include("Comments").ToList<Photo>();
-                return photolist;
-            }
-        }
+        
 
         public void SavePhoto(Photo newPhoto)
         {

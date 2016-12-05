@@ -1,12 +1,21 @@
 ﻿@using Labb_1.Models
 @model List<Labb_1.Models.Photo>
 
-<div class="container">
-    @foreach (var photo in Model)
-    {
-        <div>
-            <label for="@photo.PhotoID"><img  src="@Url.Content(photo.Url)" alt="Image From Folder" style="max-width: 300px" /></label>
-            <input type="checkbox" name="photoIds" value="@photo.PhotoID" id="@photo.PhotoID"/>
-        </div>
-    }
+<div class="container" style="display: flex;
+    flex-wrap: wrap;
+    flex-flow: row wrap;
+    margin-bottom: 100px;">
+    <div>
+        @foreach (var photo in Model)
+        {
+            
+                <label class="Image-thumb" for="@photo.PhotoID"  style="max-width: 100%;
+    height: auto;
+    margin: 1px;
+      overflow: visible;"><img src="@Url.Content(photo.Url)" alt="Image From Folder" /></label>
+                <input type="checkbox" name="photoIds" value="@photo.PhotoID" id="@photo.PhotoID"  />
+           
+        }
+    </div>
 </div>
+<link href="~/Content/AlbumSyle.css" rel="stylesheet" />

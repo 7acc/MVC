@@ -21,8 +21,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.CommentDate)
         </td>
+        <td>         
+            <a id="deleteComment" data="@item.CommentId" photoData="@item.photoId" href="@Url.Action("DeleteComment", new {commentId = item.CommentId, photoId = item.photoId})">Delete</a>
+        </td>
      
     </tr>
 }
 
 </table>
+<script src="~/Scripts/DeleteComment.js"></script>

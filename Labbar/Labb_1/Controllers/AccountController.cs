@@ -4,14 +4,24 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Labb_1.Models;
+using Labb1_Data;
+using Labb1_Data.Repositories;
+using Labb1_Data.Interfaces;
+
 using System.Security.Claims;
 
 namespace Labb_1.Controllers
 {
     public class AccountController : Controller
     {
-        private static readonly DataAccess Db = new DataAccess();
+        IUserRepository userRepository;
+     
         // GET: Account
+        public AccountController()
+        {
+            this.userRepository = new UserRepo();
+        }
+
         public ActionResult Index()
         {
             return View();
@@ -33,7 +43,8 @@ namespace Labb_1.Controllers
             }
 
             account.UserID = Guid.NewGuid();
-            Db.SaveUser(account);
+            UserAccountDataModel accountData = account.Transform();
+            userRepository.Add(accountData);
       
             return View("Login");
 
@@ -48,7 +59,7 @@ namespace Labb_1.Controllers
         public ActionResult Login(UserAccount user)
         {
             //get user logic       
-            var usr = Db.LoginUser(user);
+            var usr = userRepository.LoginUser(user.Email, user.Password);
 
             if (usr != null)
             {
@@ -56,8 +67,8 @@ namespace Labb_1.Controllers
                  {
                     new Claim(ClaimTypes.Name, usr.Name),
                     new Claim(ClaimTypes.Email, usr.Email),
-                    new Claim(ClaimTypes.Sid, usr.UserID.ToString()),
-                    new Claim(ClaimTypes.NameIdentifier, usr.UserID.ToString()),
+                    new Claim(ClaimTypes.Sid, usr.UserId.ToString()),
+                    new Claim(ClaimTypes.NameIdentifier, usr.UserId.ToString()),
                     new Claim(ClaimTypes.Role, usr.Admin ? "Admin" : "User")
 
                 },

@@ -16,7 +16,7 @@ namespace Labb_1.Models
         {
             modelBuilder.Entity<Album>().
               HasMany(c => c.Photos).
-              WithMany(p => p.albums).
+              WithMany(p => p.Albums).
               Map(
                m =>
                {

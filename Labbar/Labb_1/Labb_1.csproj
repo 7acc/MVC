@@ -173,10 +173,13 @@
     <Content Include="Content\Site.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
+    <Content Include="Scripts\AddPhotosToAlbum.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\DeleteComment.js" />
+    <Content Include="Scripts\GetCommentsInterval.js" />
     <Content Include="Scripts\images\bx_loader.gif" />
     <Content Include="Scripts\images\controls.png" />
     <Content Include="Scripts\jquery-1.10.2.js" />
@@ -194,6 +197,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\PostComment.js" />
+    <Content Include="Scripts\ViewAlbum.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -243,11 +247,12 @@
     <Compile Include="Migrations\201611251628542_uploaderid.Designer.cs">
       <DependentUpon>201611251628542_uploaderid.cs</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\201612041752302_canedit.cs" />
+    <Compile Include="Migrations\201612041752302_canedit.Designer.cs">
+      <DependentUpon>201612041752302_canedit.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Album.cs" />
     <Compile Include="Models\Comment.cs" />
-    <Compile Include="DataAccess.cs" />
-    <Compile Include="DataContext.cs" />
     <Compile Include="Models\Photo.cs" />
     <Compile Include="Models\UserAccount.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -283,6 +288,8 @@
     <Content Include="Views\Album\ViewAlbum.cshtml" />
     <Content Include="Views\Error\Error.cshtml" />
     <Content Include="Views\Album\ViewAlbumSlider.cshtml" />
+    <Content Include="Views\Album\AddPhotosToAlbum.cshtml" />
+    <Content Include="Views\Photo\UploadPhoto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -319,6 +326,15 @@
     <EmbeddedResource Include="Migrations\201611251628542_uploaderid.resx">
       <DependentUpon>201611251628542_uploaderid.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201612041752302_canedit.resx">
+      <DependentUpon>201612041752302_canedit.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Labb1_Data\Labb1_Data.csproj">
+      <Project>{c03ab26a-22f8-49d1-90e0-e0daa5d8c8ec}</Project>
+      <Name>Labb1_Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

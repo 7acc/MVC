@@ -1,7 +1,6 @@
-﻿$(document).ready(function () {
-    $("#PostCommentBtn").click(function (e) {
+﻿$(document).ready(function() {
+    $("#PostCommentBtn").click(function(e) {
         e.preventDefault();
-
         var commentTextBox = $("textarea#comment");
         var ID = $("#PhotoDiv").children("img").attr("id");
 
@@ -16,7 +15,7 @@
                 photoId: ID
             },
             type: "POST",
-            success: function (data) {
+            success: function(data) {
 
                 $.ajax({
                     url: "/Comments/GetComments",
@@ -25,7 +24,7 @@
                     type: "GET",
                     dataType: "html"
 
-                }).success(function (result) {
+                }).success(function(result) {
                     $("div#CommentsDiv").html(result);
                     //alert($("#PhotoDiv").children("img").attr("id"));
                     commentTextBox.val("");
@@ -34,4 +33,6 @@
             }
         });
     });
+   
 });
+

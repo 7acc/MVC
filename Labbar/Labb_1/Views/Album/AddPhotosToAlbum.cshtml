@@ -1,0 +1,41 @@
+﻿@using Labb_1.Models
+@using Microsoft.AspNet.Identity
+@model Labb_1.Models.Album
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+
+
+@{
+    var userid = new Guid(User.Identity.GetUserId());
+}
+
+
+<div id="AddPhotoContent">
+    <a id="Backbtn" href="@Url.Action("ViewAlbum", new {albumId = @Model.AlbumId})">Back</a>
+    <div id="photoUploader">
+        @{
+            Html.RenderAction("UploadPhoto", "Photo");
+        }
+    </div>
+</div>
+@using (Html.BeginForm())
+{
+    <div id="UserIdDiv" data="@userid"></div>
+    <div id="albumIdDiv" data="@Model.AlbumId"></div>
+    <div id="PhotoSelector">
+        @{
+            Html.RenderAction("GetExcludedPhotoSelector", "Photo", new { @userId = new Guid(User.Identity.GetUserId()), @albumId = Model.AlbumId });
+        }
+    </div>
+    <div id="SubmitDiv">
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input id="addBtn" type="submit" value="Add" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+            }
+

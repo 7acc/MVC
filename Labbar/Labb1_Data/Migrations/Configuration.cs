@@ -1,19 +1,18 @@
-namespace Labb_1.Migrations
+namespace Labb1_Data.Migrations
 {
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<Labb_1.Models.DataContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<Labb1_Data.TheContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
-            ContextKey = "Labb_1.Models.DataContext";
         }
 
-        protected override void Seed(Labb_1.Models.DataContext context)
+        protected override void Seed(Labb1_Data.TheContext context)
         {
             //  This method will be called after migrating to the latest version.
 
