@@ -3,7 +3,7 @@
     <h1>Recent uploads</h1>
     @foreach (var photo in Model)
     {
-        <a class="Aimage" href='@Url.Action("ShowImage", "Gallery", new {ImageUrl = photo.Url})'>
+        <a class="Aimage" href='@Url.Action("ShowImage", "Gallery", new {id = photo.PhotoID})'>
             <img class="fleximage" src="@Url.Content(photo.Url)" alt="Image From Folder"/>
         </a>
     }

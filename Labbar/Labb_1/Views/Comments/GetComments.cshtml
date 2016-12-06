@@ -1,6 +1,7 @@
-﻿@model IEnumerable<Labb_1.Models.Comment>
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<Labb_1.Models.Comment>
 
-<p>   
+<p>
 </p>
 <table class="table">
     <tr>
@@ -13,20 +14,26 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model.OrderByDescending(x=> x.CommentDate)) {
-    <tr>
-        <td style="white-space: pre-line">
-            @Html.DisplayFor(modelItem => item.comment)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.CommentDate)
-        </td>
-        <td>         
-            <a id="deleteComment" data="@item.CommentId" photoData="@item.photoId" href="@Url.Action("DeleteComment", new {commentId = item.CommentId, photoId = item.photoId})">Delete</a>
-        </td>
-     
-    </tr>
-}
+    @foreach (var item in Model.OrderByDescending(x => x.CommentDate))
+    {
+        <tr>
+            <td style="white-space: pre-line">
+                @Html.DisplayFor(modelItem => item.comment)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CommentDate)
+            </td>
+            @if (new Guid(User.Identity.GetUserId()) == item.commentedById)
+            {
+                <td>
+
+                    <a id="deleteComment" data="@item.CommentId" photoData="@item.photoId" href="@Url.Action("DeleteComment", new {commentId = item.CommentId, photoId = item.photoId})">Delete</a>
+
+                </td>
+            }
+
+        </tr>
+    }
 
 </table>
 <script src="~/Scripts/DeleteComment.js"></script>

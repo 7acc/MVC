@@ -54,7 +54,14 @@ namespace Labb_1.Controllers
 
             var album = new Album(albumRepository.GetById(albumId));
             album.Photos = albumRepository.GetAlbumPhotos(album.AlbumId).Select(x => new Photo(x)).ToList();
+            if(User.Identity.IsAuthenticated)
+            { 
             album.CanBeEdited = CanEdit(new Guid(User.Identity.GetUserId()), albumId);
+            }
+            else
+            {
+                album.CanBeEdited = false;
+            }
 
 
             return View(album);

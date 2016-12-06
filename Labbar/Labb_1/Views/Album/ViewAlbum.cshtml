@@ -27,7 +27,10 @@
             <div class="col-md-2"></div>
         </div>
     </div>
-    <a href="@Url.Action("RemoveAlbum",new {albumId = Model.AlbumId})">Delete Album!</a>
+@if (Model.CanBeEdited)
+{
+    <a href="@Url.Action("RemoveAlbum", new { albumId = Model.AlbumId })">Delete Album!</a>
+}
 </div>
 
 @section css{

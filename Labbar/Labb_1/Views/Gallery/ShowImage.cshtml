@@ -1,4 +1,5 @@
 ﻿@using Labb_1.Models
+@using Microsoft.AspNet.Identity;
 @model Labb_1.Models.Photo
 @{
    
@@ -9,7 +10,7 @@
         <img id="@Model.PhotoID" src="@Url.Content(Model.Url)" alt="Image From Folder" style="max-width: 100%; margin-top: 50px;" />
     </div>
 
-    @if (User.Identity.IsAuthenticated && User.IsInRole("Admin"))
+    @if (User.Identity.IsAuthenticated && new Guid(User.Identity.GetUserId()) == Model.uploader || User.IsInRole("Admin"))
     {
         <a href='@Url.Action("Delete", "Gallery", new { ImageId = Model.PhotoID})'>Delete Image</a>
     }

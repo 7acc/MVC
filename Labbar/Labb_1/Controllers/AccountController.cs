@@ -46,7 +46,7 @@ namespace Labb_1.Controllers
             UserAccountDataModel accountData = account.Transform();
             userRepository.Add(accountData);
       
-            return View("Login");
+            return RedirectToAction("Login");
 
         }
 
