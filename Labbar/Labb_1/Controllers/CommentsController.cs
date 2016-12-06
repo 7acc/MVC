@@ -58,7 +58,7 @@ namespace Labb_1.Controllers
                 return View(newComment);
             }
         }
-
+      
         public ActionResult DeleteComment(Guid commentid, Guid photoId)
         {
             CommentRepository.Delete(commentid);

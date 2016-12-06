@@ -87,10 +87,11 @@ namespace Labb_1.Controllers
             else
             {
                 ModelState.AddModelError("", "UserName/Password is Invalid");
-                return View();
+                return View("Login");
             }
 
         }
+        [Authorize]
         public ActionResult LogOut(string url)
         {
             var ctx = Request.GetOwinContext();
@@ -100,7 +101,7 @@ namespace Labb_1.Controllers
             return RedirectToAction("Login", "Account");
            
         }
-
+        [Authorize]
         public ActionResult LoggedIn()
         {
             if (User.Identity.IsAuthenticated)

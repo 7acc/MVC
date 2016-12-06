@@ -25,12 +25,13 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult GetUserPhotosSelector(Guid userId)
         {
             var listOfPhotos = PhotoRepository.GetUserPhoto(userId).Select(x => new Photo(x)).ToList();             
             return PartialView(listOfPhotos);
         }
+        [Authorize]
         public ActionResult GetExcludedPhotoSelector(Guid userId, Guid albumId )
         {
             var albumrepo = new AlbumRepo();
@@ -41,12 +42,13 @@ namespace Labb_1.Controllers
             var excludedList = listOfPhotos.Where(p => albumphotos.All(x => x.PhotoID != p.PhotoID)).ToList();
             return PartialView("GetUserPhotosSelector",excludedList);
         }
-
+        [Authorize]
         public ActionResult UploadPhoto()
         {
             return PartialView();
         }
         [HttpPost]
+        [Authorize]
         public ActionResult UploadPhoto(Photo photo, HttpPostedFileBase imageFile)
         {
             if (!ModelState.IsValid) { return View(photo); }

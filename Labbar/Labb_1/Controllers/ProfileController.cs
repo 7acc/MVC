@@ -19,12 +19,12 @@ namespace Labb_1.Controllers
         {
             UserRepository = new UserRepo();
         }
-
+        [Authorize]
         public ActionResult Index()
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult UserProfile()
         {
             if (User.Identity.IsAuthenticated)

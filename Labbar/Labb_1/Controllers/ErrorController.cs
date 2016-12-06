@@ -18,6 +18,10 @@ namespace Labb_1.Controllers
         {
             return View();
         }
+        public ActionResult Unauthoized()
+        {
+            return View();
+        }
 
         
     }

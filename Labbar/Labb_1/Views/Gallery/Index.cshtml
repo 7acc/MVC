@@ -8,30 +8,35 @@
 
 
 <h2>My Gallery</h2>
-<div class="container-fluid">
-    <div style="margin-top: 40px">
-        @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
-        <div>
-            <h1>GALLERY</h1></div>
-    </div>
-    <br/>
-    <br/>   
-    <div id="flexcontainer">
-        @foreach (var photo in Model)
-            {
-            <div class="Image-thumb">
-                <a href='@Url.Action("ShowImage", "Gallery", new {id = photo.PhotoID}, null)'>
-                    <img src="@Url.Content(photo.Url)" alt="Image From Folder" />
-                </a>
+<div id="AlbumContent">
+    <a id="AlbumsBtn" href="@Url.Action("ViewAllAlbums","Gallery")">Albums</a>
+</div>
+    <div class="container-fluid">
+        <div style="margin-top: 40px">
+            @Html.ActionLink("Upload", "UpLoad", "Gallery", new { @class = "navbar-brand" })
+            <div>
+                <h1>GALLERY</h1>
             </div>
-        }
-    </div>
-  
+        </div>
+        <br />
+        <br />
+        <div id="flexcontainer">
+            @foreach (var photo in Model)
+            {
+                <div class="Image-thumb">
+                    <a href='@Url.Action("ShowImage", "Gallery", new {id = photo.PhotoID}, null)'>
+                        <img src="@Url.Content(photo.Url)" alt="Image From Folder" />
+                    </a>
+                </div>
+            }
+        </div>
+        <script src="~/Scripts/Galleryalbums.js"></script>
+
         @section featured
 {
             @{
                 <div style="margin-top:50px">
-                  
+
                     @{
                         Html.RenderAction("RecentUploads");
                     }
@@ -39,8 +44,10 @@
             }
 
 
-           
+
         }
-   
-</div>
-<link href="~/Content/AlbumSyle.css" rel="stylesheet" />
+
+    </div>
+
+    <link href="~/Content/AlbumSyle.css" rel="stylesheet" />
+

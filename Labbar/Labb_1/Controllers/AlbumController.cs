@@ -26,7 +26,7 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult CreateAlbum()
         {
             return View();
@@ -102,7 +102,7 @@ namespace Labb_1.Controllers
             }
             return false;
         }
-
+        [Authorize]
         public ActionResult RemoveAlbum(Guid albumid)
         {
             albumRepository.Delete(albumid);
