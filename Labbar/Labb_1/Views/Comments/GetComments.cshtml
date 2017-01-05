@@ -23,7 +23,7 @@
             <td>
                 @Html.DisplayFor(modelItem => item.CommentDate)
             </td>
-            @if (new Guid(User.Identity.GetUserId()) == item.commentedById)
+            @if (User.Identity.IsAuthenticated && new Guid(User.Identity.GetUserId()) == item.commentedById || User.IsInRole("Admin"))
             {
                 <td>
 

@@ -1,6 +1,7 @@
 ﻿$(document).ready(function() {
     $("#PostCommentBtn").click(function(e) {
         e.preventDefault();
+        alert("hej");
         var commentTextBox = $("textarea#comment");
         var ID = $("#PhotoDiv").children("img").attr("id");
 
