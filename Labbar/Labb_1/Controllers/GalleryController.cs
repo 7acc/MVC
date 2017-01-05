@@ -30,7 +30,7 @@ namespace Labb_1.Controllers
             var imageList = PhotoRepository.GetAll().Select(x => new Photo(x)).ToList();        
             return View(imageList);
         }
-
+        [Authorize]
         public ActionResult UpLoad()
         {
             return View();
@@ -62,6 +62,7 @@ namespace Labb_1.Controllers
              
             return View(model: image);
         }
+        [Authorize]
         public ActionResult Delete(Guid imageId)
         {
             var image = new Photo(PhotoRepository.GetById(imageId));
@@ -84,6 +85,13 @@ namespace Labb_1.Controllers
              
             return PartialView(model: list);
 
+        }
+        [HttpGet]
+        public ActionResult ViewAllAlbums()
+        {
+            var albumRepo = new AlbumRepo();
+            var albums = albumRepo.GetAll().Select(x => new Album(x)).ToList();
+            return PartialView(albums);
         }
 
 

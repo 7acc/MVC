@@ -171,6 +171,7 @@
     <Content Include="Content\jquery-filestyle.css" />
     <Content Include="Content\RecentUploads.css" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\ViewAlbums.css" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\AddPhotosToAlbum.js" />
@@ -179,6 +180,7 @@
     <Content Include="Scripts\bower.json" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\DeleteComment.js" />
+    <Content Include="Scripts\Galleryalbums.js" />
     <Content Include="Scripts\GetCommentsInterval.js" />
     <Content Include="Scripts\images\bx_loader.gif" />
     <Content Include="Scripts\images\controls.png" />
@@ -291,6 +293,8 @@
     <Content Include="Views\Album\ViewAlbumSlider.cshtml" />
     <Content Include="Views\Album\AddPhotosToAlbum.cshtml" />
     <Content Include="Views\Photo\UploadPhoto.cshtml" />
+    <Content Include="Views\Error\Unauthoized.cshtml" />
+    <Content Include="Views\Gallery\ViewAllAlbums.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

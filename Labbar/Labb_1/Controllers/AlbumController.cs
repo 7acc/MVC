@@ -26,7 +26,7 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult CreateAlbum()
         {
             return View();
@@ -54,7 +54,14 @@ namespace Labb_1.Controllers
 
             var album = new Album(albumRepository.GetById(albumId));
             album.Photos = albumRepository.GetAlbumPhotos(album.AlbumId).Select(x => new Photo(x)).ToList();
+            if(User.Identity.IsAuthenticated)
+            { 
             album.CanBeEdited = CanEdit(new Guid(User.Identity.GetUserId()), albumId);
+            }
+            else
+            {
+                album.CanBeEdited = false;
+            }
 
 
             return View(album);
@@ -102,7 +109,7 @@ namespace Labb_1.Controllers
             }
             return false;
         }
-
+        [Authorize]
         public ActionResult RemoveAlbum(Guid albumid)
         {
             albumRepository.Delete(albumid);
