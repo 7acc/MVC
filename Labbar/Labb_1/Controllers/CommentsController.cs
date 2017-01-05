@@ -25,8 +25,6 @@ namespace Labb_1.Controllers
         [HttpGet]
         public ActionResult GetComments(Guid imageId)
         {
-
-
             var comments = CommentRepository.GetCommentsForPhoto(imageId).Select(x => new Comment(x));
             return PartialView(comments);
         }
