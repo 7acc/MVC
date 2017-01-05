@@ -44,7 +44,14 @@ namespace Labb_1.Controllers
                 {                  
                     newComment.CommentId = Guid.NewGuid();
                     newComment.CommentDate = DateTime.Now;
-                    newComment.commentedById = new Guid(identity.FindFirst(ClaimTypes.Sid).Value);
+                    if (User.Identity.IsAuthenticated)
+                    {
+                        newComment.commentedById = new Guid(identity.FindFirst(ClaimTypes.Sid).Value);
+                    }
+                    else
+                    {
+                        newComment.commentedById = new Guid();
+                    }
                     newComment.photoId = photoId;
                 }
                 CommentRepository.Add(newComment.Transform());              
