@@ -1,9 +1,8 @@
 ﻿$(document).ready(function () {
 
-    $("#PostCommentBtn").click(function (e) {
-        alert('spin');
+    $("#PostCommentBtn").click(function (e) {      
         e.preventDefault();
-       
+        alert("hej");
         var commentTextBox = $("textarea#comment");
         var ID = $("#PhotoDiv").children("img").attr("id");
 
@@ -25,7 +24,7 @@
                 $("#Loader").fadeOut();
             },
             success: function (data) {
-
+                alert("hej");
                 $.ajax({
                     url: "/Comments/GetComments",
                     data: { imageId: ID },
