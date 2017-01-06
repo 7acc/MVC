@@ -12,10 +12,11 @@
                 <label class="Image-thumb" for="@photo.PhotoID"  style="max-width: 100%;
     height: auto;
     margin: 1px;
-      overflow: visible;"><img src="@Url.Content(photo.Url)" alt="Image From Folder" /></label>
-                <input type="checkbox" name="photoIds" value="@photo.PhotoID" id="@photo.PhotoID"  />
+      overflow: visible;"><img class="photo" src="@Url.Content(photo.Url)" alt="Image From Folder" /></label>
+                <input type="checkbox" class="photoCheck" name="photoIds" value="@photo.PhotoID" id="@photo.PhotoID"  />
            
         }
     </div>
 </div>
-<link href="~/Content/AlbumSyle.css" rel="stylesheet" />
+<link href="~/Content/AlbumSyle.css" rel="stylesheet"/>
+

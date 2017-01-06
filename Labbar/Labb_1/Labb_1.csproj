@@ -178,7 +178,9 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\bower.json" />
+    <Content Include="Areas\MyArea\Views\web.config" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\Createalbum.js" />
     <Content Include="Scripts\DeleteComment.js" />
     <Content Include="Scripts\Galleryalbums.js" />
     <Content Include="Scripts\GetCommentsInterval.js" />
@@ -197,16 +199,20 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\Login.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\PostComment.js" />
+    <Content Include="Scripts\PostComments.js" />
+    <Content Include="Scripts\Register.js" />
     <Content Include="Scripts\Spinner.css" />
-    <Content Include="Scripts\ViewAlbum.js" />
+    <Content Include="Scripts\UploadImage.js" />
+    <Content Include="Scripts\ViewAlbumJs.js" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Areas\MyArea\MyAreaAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AlbumController.cs" />
     <Compile Include="Controllers\CommentsController.cs" />
@@ -304,6 +310,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\MyArea\Controllers\" />
+    <Folder Include="Areas\MyArea\Models\" />
+    <Folder Include="Areas\MyArea\Views\Shared\" />
     <Folder Include="GalleryPhotos\" />
   </ItemGroup>
   <ItemGroup>

@@ -38,12 +38,12 @@ namespace Labb_1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult UpLoad(Photo photo, HttpPostedFileBase image)
+        public ActionResult UpLoad(Photo photo, HttpPostedFileBase imageFile)
         {
             if (!ModelState.IsValid) { return View(photo); }
-            if (image == null) { return View(photo); }
+            if (imageFile == null) { return View(photo); }
 
-            photo.Url = "~/GalleryPhotos/" + image.FileName;
+            photo.Url = "~/GalleryPhotos/" + imageFile.FileName;
             photo.UploadedDate = DateTime.Now;
             photo.PhotoID = Guid.NewGuid();
             if (User.Identity.IsAuthenticated)
@@ -53,7 +53,7 @@ namespace Labb_1.Controllers
             var photoData = photo.Transform();
             PhotoRepository.Add(photoData);
 
-            image.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), image.FileName));
+            imageFile.SaveAs(Path.Combine(Server.MapPath("~/GalleryPhotos"), imageFile.FileName));
             return RedirectToAction("Index");
         }
         public ActionResult ShowImage(Guid id)

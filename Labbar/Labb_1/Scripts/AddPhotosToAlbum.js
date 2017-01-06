@@ -12,10 +12,15 @@
     $.ajax({
         url: "/Photo/UploadPhoto/",
         type: "POST",
-        data: formData,
-        success: function (data) {
+        beforeSend: function () {
+            $("#Loader").fadeIn();
+        },
+        complete: function () {
+
+            $("#Loader").fadeOut();
 
         },
+        data: formData,      
         cache: false,
         processData: false,
         contentType: false
@@ -39,17 +44,40 @@
     });
 });
 
-$("#BackBtn").click(function (e) {
+
+$("#AddPhotosBtn").click(function (e) {
+    alert("addphotoklick");
     e.preventDefault();
+
+    var PhotoIds = [];   
+    var AlbumId = $("#albumIdDiv").attr("data");
+
+    $(".photoCheck").each(function (index, box) {
+       
+        if (box.checked) {         
+            alert("ischecked");
+            alert(box.id);
+            PhotoIds.push(box.id);
+            alert("pushed");
+        }
+    });
+
+
     $.ajax({
-        url: "/Album/ViewAlbum/",
-        data: $("#albumIdDiv").attr("data"),
-        contentType: "application/html; charset=utf-8",
-        type: "GET",
-        dataType: "html"
-    }).success(function(backData) {
-        $("div#AlbumContent").html(backData);
+        url: "/Album/AddPhotosToAlbum",
+        type: "POST",
+        data: {
+            albumId: AlbumId,
+            photoIds: PhotoIds
+        },
+        beforeSend: function() {
+
+            $(".Loader2").fadeIn();
+        }     
+    }).success(function() {
+        window.location.href = "/Album/ViewAlbum?albumId=" + $("#albumIdDiv").attr("data");
     });
 });
+
 
 

@@ -5,7 +5,7 @@
 <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
 <script src="~/Scripts/bootstrap.min.js"></script>
 <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-
+<link href="~/Scripts/Spinner.css" rel="stylesheet" />
 
 @{
     var userid = new Guid(User.Identity.GetUserId());
@@ -19,6 +19,7 @@
             Html.RenderAction("UploadPhoto", "Photo");
         }
     </div>
+    <div id="Loader" hidden></div>
 </div>
 @using (Html.BeginForm())
 {
@@ -32,10 +33,9 @@
     <div id="SubmitDiv">
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input id="addBtn" type="submit" value="Add" class="btn btn-default" />
+                <input id="AddPhotosBtn" type="submit" value="Add" class="btn btn-default" /><div id="Loader" hidden></div>
             </div>
         </div>
-    </div>
-
-            }
+    </div>       
+ }
 

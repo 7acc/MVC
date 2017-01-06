@@ -32,8 +32,7 @@ namespace Labb_1.Controllers
             return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]     
         public ActionResult Register(UserAccount account)
         {
             if (!ModelState.IsValid)
@@ -54,8 +53,7 @@ namespace Labb_1.Controllers
         {
             return View();
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        [HttpPost]      
         public ActionResult Login(UserAccount user)
         {
             //get user logic       

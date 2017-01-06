@@ -16,6 +16,6 @@ namespace Labb1_Data.Interfaces
 
 
         IEnumerable<PhotoDataModel> GetAlbumPhotos(Guid albumId);
-        void SavePhotosToAlbum(Guid albumId, Guid[] photoIds);
+        void SavePhotosToAlbum(Guid albumId, List<Guid>photoIds );
     }
 }
