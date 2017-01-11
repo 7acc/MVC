@@ -44,7 +44,7 @@ namespace Labb_1.Controllers
             albumRepository.SavenewAlbum(albumData, photoIds, new Guid(User.Identity.GetUserId()));;
 
 
-            return RedirectToAction("ViewAlbum", new {albumId = newalbum.AlbumId});
+            return View();
         }
 
         public ActionResult ViewAlbum(Guid albumId)
@@ -67,13 +67,7 @@ namespace Labb_1.Controllers
             return View(album);
         }
     
-        [HttpPost]
-        [Authorize]        
-        public ActionResult DeletePhotosFromAlbum(Guid albumId, Guid[] photoIds)
-        {
-            return RedirectToAction("ViewAlbum", albumId);
-        }
-
+      
         [Authorize]
         [HttpGet]
         public ActionResult AddPhotosToAlbum(Guid albumId)
@@ -85,10 +79,19 @@ namespace Labb_1.Controllers
 
         [HttpPost]
         [Authorize]       
-        public ActionResult AddPhotosToAlbum(Guid albumId, Guid[] photoIds)
+        public ActionResult AddPhotosToAlbum(string albumId, string[] photoIds)
         {
+            if (photoIds != null)
+            {
+                var albumGuid = Guid.Parse(albumId);
+                var PhotoGuids = new List<Guid>();
+                foreach (var photoId in photoIds)
+                {
+                    PhotoGuids.Add(Guid.Parse(photoId));
+                }
 
-            albumRepository.SavePhotosToAlbum(albumId, photoIds);
+                albumRepository.SavePhotosToAlbum(albumGuid, PhotoGuids);
+            }
             return RedirectToAction("ViewAlbum", new {albumId = albumId});
         }
 

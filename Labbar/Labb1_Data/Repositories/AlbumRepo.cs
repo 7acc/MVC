@@ -88,21 +88,24 @@ namespace Labb1_Data.Repositories
             }
         }
 
-        public void SavePhotosToAlbum(Guid albumId, Guid[] photoIds)
+        public void SavePhotosToAlbum(Guid albumId, List<Guid>photoIds)
         {
-            using (var ctx = new TheContext())
+            if (albumId != null && photoIds != null)
             {
-                var album = GetById(albumId);
-                var photoList = ctx.Photos.Include("Albums").Where(x => photoIds.Contains(x.PhotoID)).ToList();
-                ctx.Albums.Attach(album);
-                foreach (var photoDataModel in photoList)
+                using (var ctx = new TheContext())
                 {
-                    album.Photos.Add(photoDataModel);
+                    var album = GetById(albumId);
+                    var photoList = ctx.Photos.Include("Albums").Where(x => photoIds.Contains(x.PhotoID)).ToList();
+                    ctx.Albums.Attach(album);
+                    foreach (var photoDataModel in photoList)
+                    {
+                        album.Photos.Add(photoDataModel);
+                    }
+
+                    ctx.Entry(album).State = EntityState.Modified;
+
+                    ctx.SaveChanges();
                 }
-             
-                ctx.Entry(album).State = EntityState.Modified;
- 
-                ctx.SaveChanges();
             }
         }
     }

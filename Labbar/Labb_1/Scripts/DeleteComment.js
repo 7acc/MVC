@@ -1,5 +1,5 @@
-﻿$(document).ready(function () {
-    $("#deleteComment").click(function (e) {
+﻿$(document).ready(function() {
+    $("#deleteComment").click(function(e) {
         e.preventDefault();
         //alert("Start?");
 
@@ -11,8 +11,16 @@
                 commentid: commentID,
                 photoId: photoID
             },
-            type: "POST"
-        }).success(function () {
+            type: "POST",
+            beforeSend: function() {
+                $("#Loader").fadeIn();
+            },
+            complete: function() {
+
+                $("#Loader").fadeOut();
+
+            }
+        }).success(function() {
             //alert("GetStart");
             $.ajax({
                 url: "/Comments/GetComments",
@@ -21,13 +29,10 @@
                 type: "GET",
                 dataType: "html"
 
-            }).success(function (result) {
+            }).success(function(result) {
                 $("div#CommentsDiv").html(result);
                 //alert("done?");
             });
-
-
-        })
-    })
-
-})
+        });
+    });
+});
