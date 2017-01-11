@@ -1,4 +1,4 @@
-﻿module Entitty{
+﻿module Data{
 
     export class Book extends Product {
 
@@ -9,8 +9,7 @@
            Name: string, Category: string, Price: number, ArticleNR: number) {
            
            super(Name, Category, Price, ArticleNR)
-
-         
+   
             this.Title = Title;
             this.Author = Author;
 

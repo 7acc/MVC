@@ -1,5 +1,5 @@
-var Entitty;
-(function (Entitty) {
+var Data;
+(function (Data) {
     var MediaLibrary = (function () {
         function MediaLibrary() {
             this.BookArray = [];
@@ -12,5 +12,5 @@ var Entitty;
         };
         return MediaLibrary;
     }());
-    Entitty.MediaLibrary = MediaLibrary;
-})(Entitty || (Entitty = {}));
+    Data.MediaLibrary = MediaLibrary;
+})(Data || (Data = {}));

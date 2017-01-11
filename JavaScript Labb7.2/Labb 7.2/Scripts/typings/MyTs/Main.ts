@@ -9,13 +9,13 @@ var app = angular.module("MediaApp", []);
 app.controller("MediaController", function ($scope) {
 
     //let MediaElements: NodeListOf<Element> = document.getElementsByClassName("repeater"), element;  
-    let Library = new Entitty.MediaLibrary();
+    let Library = new Data.MediaLibrary();
 
 
     
     $scope.ListProducts = function () {
     
-       $scope.Products = GetProducts();
+       $scope.Products = GetProductArray();
     };
 
     $scope.ListBooks = function ()  {
@@ -27,9 +27,9 @@ app.controller("MediaController", function ($scope) {
 
     }
 
-    function GetProducts(): Entitty.Product[] {    
+    function GetProductArray(): Data.Product[] {    
 
-        let ProductArray: Entitty.Product[] = [];
+        let ProductArray: Data.Product[] = [];
 
         ProductArray = ProductArray.concat(Library.BookArray);
         ProductArray = ProductArray.concat(Library.DVDArray);

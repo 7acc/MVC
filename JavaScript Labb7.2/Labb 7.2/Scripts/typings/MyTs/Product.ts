@@ -1,4 +1,4 @@
-﻿module Entitty {
+﻿module Data {
     export class Product {
         public Name: string;
         public Category: string;

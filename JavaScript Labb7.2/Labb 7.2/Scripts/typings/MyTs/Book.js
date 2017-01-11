@@ -3,8 +3,8 @@ var __extends = (this && this.__extends) || function (d, b) {
     function __() { this.constructor = d; }
     d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
 };
-var Entitty;
-(function (Entitty) {
+var Data;
+(function (Data) {
     var Book = (function (_super) {
         __extends(Book, _super);
         function Book(Title, Author, Name, Category, Price, ArticleNR) {
@@ -13,6 +13,6 @@ var Entitty;
             this.Author = Author;
         }
         return Book;
-    }(Entitty.Product));
-    Entitty.Book = Book;
-})(Entitty || (Entitty = {}));
+    }(Data.Product));
+    Data.Book = Book;
+})(Data || (Data = {}));

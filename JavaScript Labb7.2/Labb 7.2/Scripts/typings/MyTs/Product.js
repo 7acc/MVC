@@ -1,5 +1,5 @@
-var Entitty;
-(function (Entitty) {
+var Data;
+(function (Data) {
     var Product = (function () {
         function Product(Name, Category, Price, ArticleNR) {
             this.Name = Name;
@@ -9,5 +9,5 @@ var Entitty;
         }
         return Product;
     }());
-    Entitty.Product = Product;
-})(Entitty || (Entitty = {}));
+    Data.Product = Product;
+})(Data || (Data = {}));

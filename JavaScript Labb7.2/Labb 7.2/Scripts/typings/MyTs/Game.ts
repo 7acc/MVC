@@ -1,4 +1,4 @@
-﻿module Entitty {
+﻿module Data {
 
     export class Game extends Product {
 
