@@ -3,11 +3,13 @@
 @{
     ViewBag.Title = "UpdateAdress";
 }
-
-<h2>UpdateAdress</h2>
-
-
-@using (Html.BeginForm())
+<script src="~/Scripts/EditPost.js"></script>
+<h2>Update Adress</h2>
+@{
+   
+}
+<div id="adressId" data-id="@Model.AdressId"></div>
+@using (Html.BeginForm("UppdateAdress","Adress",FormMethod.Post, new {@id = "UpdateForm" } ))
 {
     @Html.AntiForgeryToken()
     
@@ -54,10 +56,9 @@
             </div>
         </div>
     </div>
+
 }
 
 
 
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

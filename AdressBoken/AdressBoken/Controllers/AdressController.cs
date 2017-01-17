@@ -20,10 +20,22 @@ namespace AdressBoken.Controllers
         public ActionResult Index()
         {
 
-            return View(Repository.GetAll()
+            return View();
+        }
+
+        
+        public ActionResult GetAdresses()
+        {
+            return PartialView(Repository.GetAll()
                 .Select(x =>
                 new AdressViewModel(x)
             ).ToList().OrderByDescending(x => x.StreetName));
+        }
+        [HttpGet]
+        public ActionResult GetAdress(Guid adressId)
+        {
+            var adress = new AdressViewModel(Repository.GetAdressById(adressId));
+            return PartialView(adress);
         }
         public ActionResult ShowAddAdress()
         {
@@ -59,7 +71,7 @@ namespace AdressBoken.Controllers
         public ActionResult UpdateAdress(Guid AdressID)
         {
             var adressToUpdate = new AdressViewModel(Repository.GetAdressById(AdressID));
-            return View(adressToUpdate);
+            return PartialView(adressToUpdate);
         }
         [HttpPost]
         public ActionResult UpdateAdress(AdressViewModel adressToUpdate)
@@ -74,10 +86,10 @@ namespace AdressBoken.Controllers
             }
             else return View(adressToUpdate);
         }
-
-        public ActionResult Delete(Guid adressId)
+        [HttpPost]
+        public ActionResult Delete(Guid AdressId)
         {
-            Repository.Delete(adressId);
+            Repository.Delete(AdressId);
             return RedirectToAction("Index");
         }
     }
