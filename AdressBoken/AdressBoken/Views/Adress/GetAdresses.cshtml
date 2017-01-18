@@ -1,0 +1,55 @@
+﻿@model IEnumerable<AdressBoken.Models.AdressViewModel>
+
+<div id="Adresses">
+    <table class="table">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.City)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StreetName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PostalNumber)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Country)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.LastUpdated)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+           
+            <tr id="@item.AdressId">
+                <td>
+                    @Html.DisplayFor(modelItem => item.City)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StreetName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PostalNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Country)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastUpdated)
+                </td>
+                <td>
+                    <a data-id="@item.AdressId" class="UpdateLink" href="">Edit</a> |
+                    <a data-id="@item.AdressId" class="Deletelink" href="">Delete</a>
+
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+<script src="~/Scripts/DeletePost.js"></script>
+<script src="~/Scripts/EditPost.js"></script>

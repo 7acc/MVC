@@ -1,0 +1,23 @@
+﻿@model AdressBoken.Models.AdressViewModel
+    <td>
+        @Html.DisplayFor(modelItem => Model.City)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.StreetName)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.PostalNumber)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.Country)
+    </td>
+    <td>
+        @Html.DisplayFor(modelItem => Model.LastUpdated)
+    </td>
+    <td>
+        <a data-id="@Model.AdressId" class="UpdateLink" href="" >Edit</a> |
+        <a data-id="@Model.AdressId" class="Deletelink" href="">Delete</a>
+
+    </td>
+
+
